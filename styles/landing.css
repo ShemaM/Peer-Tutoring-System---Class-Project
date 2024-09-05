@@ -1,0 +1,104 @@
+ /* Base styles */
+ body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    max-width: 90%;
+    text-align: center;
+    box-sizing: border-box;
+}
+.form-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+.input-group {
+    position: relative;
+    margin-bottom: 15px;
+    width: 100%;
+}
+.input-group i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+.input-group input {
+    width: calc(100% - 20px);
+    padding: 10px 10px 10px 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.input-group label {
+    display: none;
+}
+.btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.btn:hover {
+    background-color: #218838;
+}
+.or {
+    margin: 20px 0;
+    font-size: 14px;
+    color: #888;
+}
+.icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.icons i {
+    font-size: 24px;
+    cursor: pointer;
+}
+.icons i:hover {
+    color: #007bff;
+}
+.links {
+    font-size: 14px;
+    color: #007bff;
+}
+.links p {
+    margin: 5px 0;
+}
+.links button {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 14px;
+}
+.recover {
+    text-align: right;
+}
+.recover a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+.recover a:hover {
+    text-decoration: underline;
+}
