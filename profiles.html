@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Peer Tutoring Program</title>
+    <link rel="stylesheet" href="styles/profile.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="form-title">Profile</h1>
+            <nav>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="#" onclick="showSection('profile')" class="nav-link">Profile</a>
+                <a href="#" onclick="showSection('scheduling')" class="nav-link">Scheduling</a>
+                <a href="#" onclick="showSection('virtualClass')" class="nav-link">Virtual Classroom</a>
+                <a href="#" onclick="showSection('feedback')" class="nav-link">Feedback</a>
+                <a href="#" onclick="showSection('userManagement')" class="nav-link" id="adminOnly">User Management</a>
+                <a href="#" onclick="showSection('sessionOverview')" class="nav-link" id="adminOnly2">Session Overview</a>
+                <a href="#" onclick="showSection('analytics')" class="nav-link" id="adminOnly3">Analytics</a>
+            </nav>
+        </header>
+
+        <main>
+            <section id="profile" class="profile-section">
+                <h2 class="section-title">Personal Information</h2>
+                <p>Name: [User's Name]</p>
+                <p>Email: [User's Email]</p>
+                <p id="subjectList">Subjects: Math, Science, etc.</p>
+                <p id="coursesList">Courses Enrolled: Math, Science, etc.</p>
+            </section>
+
+            <section id="scheduling" class="profile-section" style="display: none;">
+                <h2 class="section-title">Scheduling</h2>
+                <p>Set available hours and view sessions.</p>
+            </section>
+
+            <section id="virtualClass" class="profile-section" style="display: none;">
+                <h2 class="section-title">Virtual Classroom</h2>
+                <p>Access the virtual classroom for scheduled sessions.</p>
+            </section>
+
+            <section id="feedback" class="profile-section" style="display: none;">
+                <h2 class="section-title">Feedback</h2>
+                <ul>
+                    <li>Feedback 1</li>
+                    <li>Feedback 2</li>
+                </ul>
+            </section>
+
+            <section id="userManagement" class="profile-section" style="display: none;">
+                <h2 class="section-title">User Management</h2>
+                <p>Manage user roles, permissions, and account settings.</p>
+            </section>
+
+            <section id="sessionOverview" class="profile-section" style="display: none;">
+                <h2 class="section-title">Session Overview</h2>
+                <p>Monitor and reschedule sessions as needed.</p>
+            </section>
+
+            <section id="analytics" class="profile-section" style="display: none;">
+                <h2 class="section-title">Analytics</h2>
+                <p>View detailed analytics and reports.</p>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const userRole = 'tutor'; // Change to 'tutee' or 'admin' based on the logged-in user
+
+        function toggleSections() {
+            if (userRole === 'tutor') {
+                document.getElementById('coursesList').style.display = 'none';
+            } else if (userRole === 'tutee') {
+                document.getElementById('subjectList').style.display = 'none';
+            } else if (userRole === 'admin') {
+                document.getElementById('subjectList').style.display = 'none';
+                document.getElementById('coursesList').style.display = 'none';
+                document.getElementById('adminOnly').style.display = 'inline';
+                document.getElementById('adminOnly2').style.display = 'inline';
+                document.getElementById('adminOnly3').style.display = 'inline';
+            }
+        }
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.profile-section');
+            sections.forEach(section => {
+                section.style.display = section.id === sectionId ? 'block' : 'none';
+            });
+        }
+
+        toggleSections();
+    </script>
+</body>
+</html>

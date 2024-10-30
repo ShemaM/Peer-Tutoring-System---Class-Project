@@ -10,108 +10,133 @@
     <header>
         <h1>Dashboard</h1>
         <nav>
-            <a href="file:///C:/Users/Admin/OneDrive/Desktop/Peer%20Tutoring/profile.html">Profile</a>
-            <a href="file:///C:/Users/Admin/OneDrive/Desktop/Peer%20Tutoring/scheduling.html">Scheduling</a>
-            <a href="file:///C:/Users/Admin/OneDrive/Desktop/Peer%20Tutoring/virtualclass.html">Virtual Classroom</a>
-            <a href="file:///C:/Users/Admin/OneDrive/Desktop/Peer%20Tutoring/Feedback.html">Feedback</a>
+            <a href="profile.html" id="profileLink">Profile</a>
+            <a href="scheduling.html" id="schedulingLink">Scheduling</a>
+            <a href="virtualclass.html" id="classroomLink">Virtual Classroom</a>
+            <a href="feedback.html" id="feedbackLink">Feedback</a>
         </nav>
     </header>
+
     <style>
-        
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-header {
-    background-color: #003366;
-    color: #fff;
-    padding: 1rem 0;
-    text-align: center;
-}
+        header {
+            background-color: #003366;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
 
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 1rem;
-}
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
 
-nav a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.1rem;
-}
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.5rem;
+        }
 
-nav a:hover {
-    text-decoration: underline;
-    color: #ff00ff;
-}
+        nav a.active {
+            text-decoration: underline;
+            color: #ff00ff;
+        }
 
-main {
-    flex: 1;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-section {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+        section {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-section h2 {
-    margin-bottom: 1rem;
-    color: #003366;
-}
+        section h2 {
+            margin-bottom: 1rem;
+            color: #003366;
+        }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-ul li {
-    background-color: #e0e0e0;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border-radius: 8px;
-}
+        ul li {
+            background-color: #e0e0e0;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+        }
 
-footer {
-    background-color: #003366;
-    color: #fff;
-    text-align: center;
-    padding: 1rem 0;
-    margin-top: auto;
-}
-
+        footer {
+            background-color: #003366;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: auto;
+        }
     </style>
+
     <main>
         <section>
             <h2>Upcoming Sessions</h2>
-            <ul>
-                <li>Session 1: Date and Time</li>
-                <li>Session 2: Date and Time</li>
-                <!-- Additional sessions -->
+            <ul id="sessions-list">
+                <!-- Sessions will be dynamically loaded here -->
             </ul>
         </section>
     </main>
- 
-</body>
 
-<footer>
-    <p>&copy; 2024 USIU-Africa</p>
-</footer>
+    <footer>
+        <p>&copy; 2024 USIU-Africa</p>
+    </footer>
+
+    <script>
+        // JavaScript to dynamically load session data
+        document.addEventListener("DOMContentLoaded", () => {
+            const sessionsList = document.getElementById("sessions-list");
+
+            // Example data - replace this with actual backend data fetching
+            const sessions = [
+                { id: 1, name: "Session 1", date: "2024-11-10", time: "10:00 AM" },
+                { id: 2, name: "Session 2", date: "2024-11-15", time: "2:00 PM" }
+            ];
+
+            sessions.forEach(session => {
+                const li = document.createElement("li");
+                li.textContent = `${session.name}: ${session.date} at ${session.time}`;
+                sessionsList.appendChild(li);
+            });
+        });
+
+        // JavaScript to handle active state in navigation
+        document.querySelectorAll("nav a").forEach(link => {
+            link.addEventListener("click", (event) => {
+                document.querySelectorAll("nav a").forEach(item => item.classList.remove("active"));
+                event.target.classList.add("active");
+            });
+        });
+    </script>
+</body>
 </html>
