@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Classroom - Peer Tutoring Program</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Include your main styles -->
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+            color: #ff00ff;
+        }
+        .container {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 20px;
+        }
+        .btn-primary {
+            background-color: #28a745;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Virtual Classroom</h1>
+        <nav>
+            <a href="profile.html">Profile</a>
+            <a href="scheduling.html">Scheduling</a>
+            <a href="feedback.html">Feedback</a>
+            <a href="index.html">Dashboard</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="virtual-class-section">
+            <h2>Join a Session</h2>
+            <p>Select a session below to join the virtual classroom.</p>
+            <ul class="list-unstyled" id="session-list">
+                <li class="mb-3">
+                    <span>Math Tutoring - 10:00 AM</span>
+                    <button class="btn btn-primary" onclick="joinClass('Math Tutoring')">Join</button>
+                </li>
+                <li class="mb-3">
+                    <span>Science Tutoring - 1:00 PM</span>
+                    <button class="btn btn-primary" onclick="joinClass('Science Tutoring')">Join</button>
+                </li>
+                <li class="mb-3">
+                    <span>Literature Discussion - 3:00 PM</span>
+                    <button class="btn btn-primary" onclick="joinClass('Literature Discussion')">Join</button>
+                </li>
+                <!-- Additional sessions can be added here -->
+            </ul>
+        </section>
+
+        <section class="class-resources mt-4">
+            <h2>Resources</h2>
+            <p>Access the following resources for your virtual classes:</p>
+            <ul>
+                <li><a href="resource1.pdf" target="_blank">Math Practice Worksheets</a></li>
+                <li><a href="resource2.pdf" target="_blank">Science Experiment Guide</a></li>
+                <li><a href="resource3.pdf" target="_blank">Literature Reading List</a></li>
+                <!-- Additional resources can be added here -->
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 USIU-Africa</p>
+    </footer>
+
+    <script>
+        function joinClass(sessionName) {
+            // Define URLs for different sessions (these are just example URLs)
+            const sessionUrls = {
+                "Math Tutoring": "https://zoom.us/j/123456789", // Replace with actual URL
+                "Science Tutoring": "https://meet.google.com/abc-defg-hij", // Replace with actual URL
+                "Literature Discussion": "https://example.com/virtual-classroom" // Replace with actual URL
+            };
+
+            // Check if the session name exists in the URLs object
+            if (sessionUrls[sessionName]) {
+                window.location.href = sessionUrls[sessionName]; // Redirect to the session URL
+            } else {
+                alert("Session URL not found.");
+            }
+        }
+    </script>
+</body>
+</html>
