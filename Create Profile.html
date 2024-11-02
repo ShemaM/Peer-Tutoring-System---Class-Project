@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Create Tutor Profile</title>
+    <style>
+        /* Container styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5; /* Light background color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Title styling */
+        h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #333333; /* Primary dark text color */
+        }
+
+        p {
+            text-align: center;
+            color: #666666; /* Secondary light text color */
+            margin-bottom: 20px;
+        }
+
+        /* Form labels and input styling */
+        form label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            color: #333333; /* Primary dark text color */
+        }
+
+        form input,
+        form textarea,
+        form button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        form input:focus,
+        form textarea:focus {
+            border-color: #007bff; /* Accent color from the Dashboard */
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+        }
+
+        form textarea {
+            resize: vertical;
+        }
+
+        /* Button styling */
+        form button {
+            background-color: #28a745; /* Green color from the Dashboard */
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Create Your Tutor Profile</h2>
+    <p>Showcase your skills and experience to attract potential tutees!</p>
+
+    <form id="tutorProfileForm">
+        <!-- Basic Info -->
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+        <label for="subject">Subjects (comma-separated)</label>
+        <input type="text" id="subject" name="subject" placeholder="e.g., Web Design, Database Systems, English" required>
+
+        <label for="experience">Experience (in years)</label>
+        <input type="number" id="experience" name="experience" min="0" placeholder="e.g., 5" required>
+
+        <label for="description">About Me</label>
+        <textarea id="description" name="description" placeholder="Describe your teaching style, background, etc." rows="5" required></textarea>
+
+        <!-- Availability -->
+        <label for="availability">Availability</label>
+        <input type="text" id="availability" name="availability" placeholder="e.g., Mondays 2-5 PM, Wednesdays 3-6 PM" required>
+
+        <!-- Submit Button -->
+        <button type="submit">Create Profile</button>
+    </form>
+</div>
+
+<!-- JavaScript to handle form submission -->
+<script>
+document.getElementById('tutorProfileForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form values
+    const name = document.getElementById('name').value;
+    const subjects = document.getElementById('subject').value;
+    const experience = document.getElementById('experience').value;
+    const description = document.getElementById('description').value;
+    const availability = document.getElementById('availability').value;
+    
+    // Simulate sending data to backend
+    const profileData = { name, subjects, experience, description, availability };
+    console.log("Profile Data:", profileData);
+    
+    // Here, you would send 'profileData' to your backend for saving
+    alert("Profile created successfully!");
+    
+});
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

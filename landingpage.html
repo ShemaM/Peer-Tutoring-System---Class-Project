@@ -3,84 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peer Tutoring</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="styles/landing.css">
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <title>Landing Page - Peer Tutoring Program</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet"> <!-- Google Font -->
+    <style>
+        body {
+            background-color: #35424a; /* Custom background color */
+            color: white; /* Default text color */
+        }
+        .navbar-brand {
+            font-family: 'Poppins', sans-serif; /* Use the imported font */
+            font-weight: bold; /* Make it bold */
+            font-size: 1.5rem; /* Adjust font size as needed */
+            color: #ffffff; /* Set the text color to white */
+        }
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+        }
+        .feature {
+            border: 1px solid #007bff; /* Match border with primary color */
+            border-radius: 5px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: transform 0.2s;
+            background-color: #444; /* Darker background for feature boxes */
+        }
+        .feature:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .btn-primary {
+            background-color: #007bff; /* Primary button color */
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #218838; /* Button hover color */
+            border-color: #218838; /* Match border on hover */
+        }
+        footer {
+            background-color: #444; /* Darker footer background */
+            padding: 20px 0;
+        }
+    </style>
 </head>
 <body>
-    <div class="container" id="signup" style="display:none;">
-        <h1 class="form-title">Register</h1>
-        <form method="post" action="registration_handler.php">
-            <div class="input-group">
-                <i class="fas fa-user"></i>
-                <input type="text" name="fName" id="fName" placeholder="First Name" required>
-                <label for="fName">First Name</label>
-            </div>
-            <div class="input-group">
-                <i class="fas fa-user"></i>
-                <input type="text" name="lName" id="lName" placeholder="Last Name" required>
-                <label for="lName">Last Name</label>
-            </div>
-            <div class="input-group">
-                <i class="fas fa-envelope"></i>
-                <input type="email" name="email" id="email" placeholder="Email" required>
-                <label for="email">Email</label>
-            </div>
-            <div class="input-group">
-                <i class="fas fa-lock"></i>
-                <input type="password" name="password" id="password" placeholder="Password" required>
-                <label for="password">Password</label>
-            </div>
-            <div class="input-group">
-                <label for="userType">I am signing up as:</label><br>
-                <input type="radio" name="userType" value="tutor" required> Tutor<br>
-                <input type="radio" name="userType" value="tutee" required> Tutee
-            </div>
-            <input type="submit" class="btn" value="Sign Up" name="signUp">
-        </form>
-        <p class="or">----------or--------</p>
-        <div class="icons">
-            <i class="fab fa-google"></i>
-            <i class="fab fa-facebook"></i>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Peer Tutoring Program</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="Tutee Dasboard.html">Tutee Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Tutor Dashboard.html">Tutor Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Admin Dashboar.html">Admin Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.html">Logout</a>
+                </li>
+            </ul>
         </div>
-        <div class="links">
-            <p>Already Have an Account?</p>
-            <button id="signInButton">Sign In</button>
+    </nav>
+
+    <div class="hero">
+        <h1>Welcome to the Peer Tutoring Program!</h1>
+        <p>Your journey to academic success starts here.</p>
+    </div>
+
+    <div class="container my-5">
+        <h2>Quick Links</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature text-center">
+                    <h4>Tutees</h4>
+                    <p>Find a tutor, schedule sessions, and track your learning progress.</p>
+                    <button class="btn btn-primary" onclick="alert('Redirecting to My Sessions...');">Go to My Sessions</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature text-center">
+                    <h4>Tutors</h4>
+                    <p>Create your profile, manage your sessions, and provide feedback.</p>
+                    <button class="btn btn-primary" onclick="alert('Redirecting to Tutor Dashboard...');">Go to Tutor Dashboard</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature text-center">
+                    <h4>Admin</h4>
+                    <p>Manage users, approve tutors, and oversee platform operations.</p>
+                    <button class="btn btn-primary" onclick="alert('Redirecting to Admin Dashboard...');">Go to Admin Dashboard</button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="container" id="signIn">
-        <h1 class="form-title">Sign In</h1>
-        <form method="post" action="registration_handler.php">
-            <div class="input-group">
-                <i class="fas fa-envelope"></i>
-                <input type="email" name="email" id="email" placeholder="Email" required>
-                <label for="email">Email</label>
-            </div>
-            <div class="input-group">
-                <i class="fas fa-lock"></i>
-                <input type="password" name="password" id="password" placeholder="Password" required>
-                <label for="password">Password</label>
-            </div>
-            <p class="recover">
-                <a href="#">Recover Password</a>
-            </p>
-            <input type="submit" class="btn" value="Sign In" name="signIn">
-        </form>
-        <p class="or">----------or--------</p>
-        <div class="icons">
-            <i class="fab fa-google"></i>
-            <i class="fab fa-facebook"></i>
-        </div>
-        <div class="links">
-            <p>Don't have an account yet?</p>
-            <button id="signUpButton">Sign Up</button>
-        </div>
-    </div>
+    <footer class="text-center py-4">
+        <p>&copy; 2024 Peer Tutoring Program. All rights reserved.</p>
+    </footer>
 
-    <script src="scripts/form-submission.js"></script>
-    <script src="scripts/signin-register-swap.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
 </body>
 </html>

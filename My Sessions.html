@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>My Sessions - Tutee Dashboard</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: #35424a;
+            color: #ffffff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-size: 1.5em;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px;
+        }
+
+        h1 {
+            color: #35424a;
+        }
+
+        .session-list {
+            margin-bottom: 20px;
+        }
+
+        .session {
+            background: #ffffff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Chatbox Styles */
+        .chatbox {
+            margin-top: 20px;
+            padding: 15px;
+            background: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-messages {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        .chat-input {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .chat-input button {
+            padding: 10px;
+            background: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .chat-input button:hover {
+            background: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #35424a;
+            color: #ffffff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Peer Tutoring Program</div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="my_sessions.html">My Sessions</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="profile.html">My Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>My Sessions</h1>
+        <div class="session-list" id="session-list">
+            <!-- Scheduled sessions will be populated here -->
+        </div>
+
+        <div class="chatbox">
+            <h2>Chat with Tutor</h2>
+            <div class="chat-messages" id="chat-messages">
+                <!-- Chat messages will appear here -->
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chat-input" placeholder="Type a message..." />
+                <button id="send-button">Send</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Contact us for support | Privacy Policy | Terms of Service</p>
+    </footer>
+
+    <script>
+        // Dummy data to simulate scheduled sessions
+        const sessions = [
+            { id: 1, subject: "Math", date: "2024-11-01", time: "10:00 AM", tutor: "John Doe", reminder: "1 hour before" },
+            { id: 2, subject: "Science", date: "2024-11-02", time: "02:00 PM", tutor: "Jane Smith", reminder: "30 minutes before" },
+        ];
+
+        // Function to render sessions
+        function renderSessions() {
+            const sessionList = document.getElementById("session-list");
+            sessionList.innerHTML = ""; // Clear the list
+            sessions.forEach((session) => {
+                const sessionDiv = document.createElement("div");
+                sessionDiv.classList.add("session");
+                sessionDiv.innerHTML = `
+                    <strong>Subject:</strong> ${session.subject}<br>
+                    <strong>Date:</strong> ${session.date}<br>
+                    <strong>Time:</strong> ${session.time}<br>
+                    <strong>Tutor:</strong> ${session.tutor}<br>
+                    <strong>Reminder:</strong> ${session.reminder}
+                `;
+                sessionList.appendChild(sessionDiv);
+            });
+        }
+
+        // Chat functionality
+        const chatMessages = document.getElementById("chat-messages");
+        const chatInput = document.getElementById("chat-input");
+        const sendButton = document.getElementById("send-button");
+
+        // Function to send message
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message) {
+                const messageDiv = document.createElement("div");
+                messageDiv.textContent = "You: " + message;
+                chatMessages.appendChild(messageDiv);
+                chatInput.value = ""; // Clear input after sending
+                // Simulate a reply from the tutor
+                setTimeout(() => {
+                    const replyDiv = document.createElement("div");
+                    replyDiv.textContent = "Tutor: Got your message!";
+                    chatMessages.appendChild(replyDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+                }, 1000);
+            }
+        }
+
+        // Event listeners
+        sendButton.addEventListener("click", sendMessage);
+        chatInput.addEventListener("keypress", (event) => {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+
+        // Initial rendering of sessions
+        document.addEventListener("DOMContentLoaded", function() {
+            renderSessions();
+        });
+    </script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+</html>

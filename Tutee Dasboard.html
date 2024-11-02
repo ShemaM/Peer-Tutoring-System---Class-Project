@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Tutee Dashboard</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: #35424a;
+            color: #ffffff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-size: 1.5em;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .tutee-profile a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px;
+        }
+
+        h1 {
+            color: #35424a;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stats div {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Button Styles */
+        button {
+            padding: 8px 12px;
+            background: #28a745;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #35424a;
+            color: #ffffff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Tutor Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #35424a;
+            color: #ffffff;
+        }
+
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+
+        tr:hover {
+            background: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Peer Tutoring Program</div>
+        <nav>
+            <ul>
+               
+                <li><a href="Browse Tutors.html">Browse Tutors</a></li>
+                <li><a href="My Sessions.html">My Sessions</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
+        <div class="tutee-profile">
+            <a href="profile.html">Tutee Profile</a>
+        </div>
+    </header>
+
+    <main>
+        <h1>Welcome, Tutee</h1>
+        <div class="stats">
+            <div>Total Tutors Available: <span id="total-tutors">0</span></div>
+            <div>Active Sessions: <span id="active-sessions">0</span></div>
+        </div>
+
+        <section id="browse-tutors">
+            <h2>Available Tutors</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tutor Name</th>
+                        <th>Subjects Offered</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populate with available tutors -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>Contact us for support | Privacy Policy | Terms of Service</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // this is an example. Team database will work on data😊
+        const availableTutors = [
+            { name: "Wayne", subjects: "Math, Science" },
+            { name: "RAHMO", subjects: "English, History" },
+            { name: "SHEMA", subjects: "Computer Science" },
+        ];
+
+        // Function to render available tutors
+        function renderAvailableTutors() {
+            const tableBody = document.querySelector("#browse-tutors tbody");
+            tableBody.innerHTML = ""; // Clear the table body
+            availableTutors.forEach((tutor) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${tutor.name}</td>
+                    <td>${tutor.subjects}</td>
+                    <td>
+                        <button onclick="scheduleSession('${tutor.name}')">Schedule Session</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+            document.getElementById("total-tutors").innerText = availableTutors.length;
+        }
+
+        // Function to schedule a session
+        function scheduleSession(tutorName) {
+            alert(`Session scheduled with ${tutorName}`);
+            // Here you can implement actual session scheduling logic
+        }
+
+        // Initial rendering of data
+        document.addEventListener("DOMContentLoaded", function() {
+            renderAvailableTutors();
+        });
+    </script>
+      
+</body>
+</html>
