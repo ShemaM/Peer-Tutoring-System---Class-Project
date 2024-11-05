@@ -1,158 +1,169 @@
-
-<?php
-session_start();
-
-// Check if the user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.html");
-    exit;
-}
-?>
-
 <!DOCTYPE html>
-
-
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="./script.js">
-    <title>Registration Form</title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration/Login Page</title>
   <style>
-    :root {
-      --light-grey: #f5f6f7;
-      --dark-blue: #0a0a23;
-      --fcc-blue: #1b1b32;
-      --light-yellow: #fecc4c;
-      --dark-yellow: #feac32;
-      --light-pink: #ffadad;
-      --dark-red: #850000;
-      --light-green: #acd157;
-    }
-
     body {
-      font-family: "Lato", Helvetica, Arial, sans-serif;
-      font-size: 18px;
-      background-color: var(--fcc-blue);
-      color: var(--light-grey);
-    }
-
-    h1 {
+      font-family: Arial, sans-serif;
+      background-color: #35424a;
+      color: #fff;
       text-align: center;
+      padding: 20px;
     }
-
     .container {
-      width: 90%;
-      max-width: 680px;
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #1b1b32;
+      padding: 20px;
+      border-radius: 10px;
     }
-
-    h1,
-    .container,
-    .output {
-      margin: 20px auto;
-    }
-
-    label,
-    legend {
-      font-weight: bold;
-    }
-
-    .input-container {
-      display: flex;
-      flex-direction: column;
-    }
-
-    button {
-      cursor: pointer;
-      text-decoration: none;
-      background-color: var(--light-yellow);
-      border: 2px solid var(--dark-yellow);
-    }
-
-    button,
-    input,
-    select {
-      min-height: 24px;
-      color: var(--dark-blue);
-    }
-
-    fieldset,
-    label,
-    button,
-    input,
-    select {
-      margin-bottom: 10px;
-    }
-
-    .output {
-      border: 2px solid var(--light-grey);
-      padding: 10px;
-      text-align: center;
-    }
-
-    .hide {
+    .form {
       display: none;
     }
-
-    .output span {
-      font-weight: bold;
-      font-size: 1.2em;
+    .active {
+      display: block;
     }
-
-    .surplus {
-      color: var(--light-pink);
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #218838;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
     }
-
-    .deficit {
-      color: var(--light-green);
+    fieldset {
+      margin: 10px 0;
+    }
+    select, input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
     }
   </style>
-  
-  <body>
-    <main>
-      <h1>Register</h1>
-      <div class="container">
-        <form id="register-form" action="http://localhost:3000/register" method="POST">
-          <label for="personal-info">Personal Info</label>
-          
-          <fieldset id="first-name">
-            <legend>First Name</legend>
-            <div class="input-container">
-              <input type="text" name="firstName" required />
-            </div>
-          </fieldset>
-          <fieldset id="last-name">
-            <legend>Last Name</legend>
-            <div class="input-container">
-              <input type="text" name="lastName" required />
-            </div>
-          </fieldset>
-          <fieldset id="surname">
-            <legend>Surname</legend>
-            <div class="input-container">
-              <input type="text" name="surname" required />
-            </div>
-          </fieldset>
-          <fieldset id="school-email">
-            <legend>School e-mail</legend>
-            <div class="input-container">
-              <input type="email" name="email" required />
-            </div>
-          </fieldset>
-          <fieldset id="password">
-            <legend>Password</legend>
-            <div class="input-container">
-              <input type="password" name="password" required />
-            </div>
-          </fieldset>
-        
-          <button type="submit" id="submit-button">Submit</button>
-        </form>
-        <div id="output" class="output hide"></div>
-      </div>
-    </main>
-    
-  </body>
+</head>
+<body>
+  <main>
+    <h1>Welcome to the Peer Tutoring Program</h1>
+    <div class="container">
+      <!-- Form Toggle Buttons -->
+      <button id="register-toggle">Register</button>
+      <button id="login-toggle">Login</button>
+
+      <!-- Registration Form -->
+      <form id="register-form" class="form">
+        <h2>Register</h2>
+        <fieldset>
+          <legend>First Name</legend>
+          <input type="text" name="firstName" required>
+        </fieldset>
+        <fieldset>
+          <legend>Last Name</legend>
+          <input type="text" name="lastName" required>
+        </fieldset>
+        <fieldset>
+          <legend>Surname</legend>
+          <input type="text" name="surname" required>
+        </fieldset>
+        <fieldset>
+          <legend>School Email</legend>
+          <input type="email" name="email" required>
+        </fieldset>
+        <fieldset>
+          <legend>Password</legend>
+          <input type="password" name="password" required>
+        </fieldset>
+        <fieldset>
+          <legend>Choose Role</legend>
+          <select id="role-select" required>
+            <option value="">Select your role</option>
+            <option value="tutor">Tutor</option>
+            <option value="tutee">Tutee</option>
+            <option value="admin">Admin</option>
+          </select>
+        </fieldset>
+        <button type="submit">Register</button>
+      </form>
+
+      <!-- Login Form -->
+      <form id="login-form" class="form">
+        <h2>Login</h2>
+        <fieldset>
+          <legend>School Email</legend>
+          <input type="email" name="email" required>
+        </fieldset>
+        <fieldset>
+          <legend>Password</legend>
+          <input type="password" name="password" required>
+        </fieldset>
+        <fieldset>
+          <legend>Choose Role</legend>
+          <select id="login-role-select" required>
+            <option value="">Select your role</option>
+            <option value="tutor">Tutor</option>
+            <option value="tutee">Tutee</option>
+            <option value="admin">Admin</option>
+          </select>
+        </fieldset>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    // Toggle forms
+    const registerToggle = document.getElementById('register-toggle');
+    const loginToggle = document.getElementById('login-toggle');
+    const registerForm = document.getElementById('register-form');
+    const loginForm = document.getElementById('login-form');
+
+    registerToggle.addEventListener('click', () => {
+      registerForm.classList.add('active');
+      loginForm.classList.remove('active');
+    });
+
+    loginToggle.addEventListener('click', () => {
+      loginForm.classList.add('active');
+      registerForm.classList.remove('active');
+    });
+
+    // Handle registration
+    registerForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const role = document.getElementById('role-select').value;
+      if (!role) {
+        alert('Please select a role.');
+        return;
+      }
+      redirectUser(role);
+    });
+
+    // Handle login
+    loginForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const role = document.getElementById('login-role-select').value;
+      if (!role) {
+        alert('Please select a role.');
+        return;
+      }
+      redirectUser(role);
+    });
+
+    // Function to redirect user
+    function redirectUser(role) {
+      if (role === 'tutor') {
+        window.location.href = 'Tutor Dashboard.html';
+      } else if (role === 'tutee') {
+        window.location.href = 'Tutee Dashboard.html';
+      } else if (role === 'admin') {
+        window.location.href = 'Admin Dashboard.html';
+      }
+      else {
+        window.location.href = 'landingpage.html';
+      }
+    }
+  </script>
+</body>
 </html>
