@@ -122,6 +122,13 @@
             bottom: 0;
             width: 100%;
         }
+      .reject{
+        background: red;
+      }
+      .danger{
+        background: red;
+      }
+       
     </style>
 </head>
 <body>
@@ -175,10 +182,10 @@
                         <th>User Name</th>
                         <th>Email</th>
                         <th>Status</th>
-                        <th>Action</th>
+                        <th>Action</th> <!--he danger color for remove -->
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="dangercolor">
                     <!-- Populate with users -->
                 </tbody>
             </table>
@@ -217,7 +224,7 @@
                     <td>Pending</td>
                     <td>
                         <button onclick="approveTutor(${index})">Approve</button>
-                        <button onclick="rejectTutor(${index})">Reject</button>
+                        <button onclick="rejectTutor(${index})" class="reject">Reject</button> 
                     </td>
                 `;
                 tableBody.appendChild(row);
@@ -250,8 +257,8 @@
                     <td>${user.email}</td>
                     <td>${user.status}</td>
                     <td>
-                        <button onclick="blockUser(${index})">Block</button>
-                        <button onclick="removeUser(${index})">Remove</button>
+                        <button onclick="blockUser(${index})" class="danger">Block</button>
+                        <button onclick="removeUser(${index})" class="danger">Remove</button>
                     </td>
                 `;
                 tableBody.appendChild(row);
