@@ -5,47 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page - Peer Tutoring Program</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet"> <!-- Google Font -->
-    <style>
-        body {
-            background-color: #35424a; /* Custom background color */
-            color: white; /* Default text color */
-        }
-        .navbar-brand {
-            font-family: 'Poppins', sans-serif; /* Use the imported font */
-            font-weight: bold; /* Make it bold */
-            font-size: 1.5rem; /* Adjust font size as needed */
-            color: #ffffff; /* Set the text color to white */
-        }
-        .hero {
-            padding: 60px 0;
-            text-align: center;
-        }
-        .feature {
-            border: 1px solid #007bff; /* Match border with primary color */
-            border-radius: 5px;
-            padding: 20px;
-            margin: 15px 0;
-            transition: transform 0.2s;
-            background-color: #444; /* Darker background for feature boxes */
-        }
-        .feature:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .btn-primary {
-            background-color: #007bff; /* Primary button color */
-            border-color: #007bff;
-        }
-        .btn-primary:hover {
-            background-color: #218838; /* Button hover color */
-            border-color: #218838; /* Match border on hover */
-        }
-        footer {
-            background-color: #444; /* Darker footer background */
-            padding: 20px 0;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="styles/myStyles/landingpage.css">
+   
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -83,7 +45,10 @@
                 <div class="feature text-center">
                     <h4>Tutees</h4>
                     <p>Find a tutor, schedule sessions, and track your learning progress.</p>
-                    <button class="btn btn-primary" onclick="alert('Redirecting to My Sessions...');">Go to My Sessions</button>
+                    <button class="btn btn-primary" onclick="
+                    alert('Redirecting to My Sessions...');
+                    window.location.href = 'tutee-dashboard.html';
+                    ">Go to My Sessions</button>
                 </div>
             </div>
             <div class="col-md-4">

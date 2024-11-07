@@ -4,118 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/myStyles/browsetutors.css">
     <title>Browse Tutors</title>
-    <style>
-        /* Global styling */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f2f5;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 800px;
-            width: 100%;
-        }
-
-        h2 {
-            text-align: center;
-            color: #333333;
-        }
-
-        .search-bar {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto 20px;
-            display: flex;
-        }
-
-        .search-input {
-            flex: 1;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px 0 0 4px;
-            outline: none;
-        }
-
-        .search-button {
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
-
-        .search-button:hover {
-            background-color: #218838;
-        }
-
-        .tutor-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        /* Tutor card styling */
-        .tutor-card {
-            background-color: white;
-            width: 100%;
-            max-width: 350px;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s;
-        }
-
-        .tutor-card:hover {
-            transform: scale(1.02);
-        }
-
-        .tutor-name {
-            font-size: 20px;
-            font-weight: bold;
-            color: #333333;
-        }
-
-        .tutor-subjects {
-            color: #666666;
-            margin: 5px 0;
-        }
-
-        .tutor-experience,
-        .tutor-availability {
-            font-size: 14px;
-            color: #444444;
-            margin: 5px 0;
-        }
-
-        .connect-btn {
-            display: block;
-            text-align: center;
-            background-color: #28a745;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.3s ease;
-        }
-
-        .connect-btn:hover {
-            background-color: #218838;
-        }
-    </style>
+    
 </head>
 <body>
 
@@ -137,16 +28,28 @@
 <script>
 // Example tutor data - this would come from your backend/database
 const tutors = [
-    { name: "Alice Smith", subjects: "Math, Physics", experience: "3 years", availability: "Mon 2-5 PM, Wed 3-6 PM" },
-    { name: "John Doe", subjects: "Chemistry, Biology", experience: "5 years", availability: "Tue 1-4 PM, Thu 10-1 PM" },
-    { name: "Mary Johnson", subjects: "English, History", experience: "2 years", availability: "Fri 12-3 PM, Sat 10-12 PM" },
-    { name: "James Williams", subjects: "Computer Science, Programming", experience: "4 years", availability: "Mon 9-12 PM, Wed 4-6 PM" }
+    { name: "Shema Nzabakamira Manasseh", subjects: "Math, Physics", experience: "3 years", availability: "Mon 2-5 PM, Wed 3-6 PM" },
+    { name: "Wayne Mosire", subjects: "Database Systems, Principles of Operaring System", experience: "5 years", availability: "Tue 1-4 PM, Thu 10-1 PM" },
+    { name: "Rahmo Muhammud", subjects: "English, GRM", experience: "2 years", availability: "Fri 12-3 PM, Sat 10-12 PM" },
+    { name: "John Omanga", subjects: "Computer Science, Programming", experience: "4 years", availability: "Mon 9-12 PM, Wed 4-6 PM" }
 ];
+
+
 
 // Function to display tutor profiles
 function displayTutors(tutorsToDisplay) {
     const tutorList = document.getElementById("tutorList");
     tutorList.innerHTML = ""; // Clear previous results
+
+    if (tutorsToDisplay.length === 0) {
+        // Display message when no tutors are found
+        const noTutorsMessage = document.createElement("div");
+        noTutorsMessage.classList.add("no-tutors-message");
+        noTutorsMessage.innerText = "No tutors available at the moment.";
+        tutorList.appendChild(noTutorsMessage);
+        return;
+        
+    }
 
     tutorsToDisplay.forEach(tutor => {
         const tutorCard = document.createElement("div");
@@ -161,8 +64,20 @@ function displayTutors(tutorsToDisplay) {
         `;
 
         tutorList.appendChild(tutorCard);
+           // Add event listener to the connect button
+           const connectBtn = tutorCard.querySelector(".connect-btn");
+        connectBtn.addEventListener("click", () => connectWithTutor(tutor));
+    
+        
     });
+}// Function to handle connect button actions
+function connectWithTutor(tutor) {
+    // Example action: log a message or navigate to the tutor's profile page
+    alert(`Connecting with ${tutor.name}!`);
+    // You could also add other actions, like opening a chat or navigating to another page:
+    window.location.href = `/tutors/${tutor.id}/create profile`  // If each tutor has a profile page
 }
+
 
 // Filter tutors based on search input
 function filterTutors() {
@@ -174,6 +89,14 @@ function filterTutors() {
     );
     displayTutors(filteredTutors);
 }
+
+
+
+function connectWithTutor(tutor) {
+    // Redirect to create-profile.html with tutor ID as a query parameter
+    window.location.href = `create-profile.html?tutorId=${tutor.id}`;
+}
+
 
 // Initialize the display with all tutors
 displayTutors(tutors);
