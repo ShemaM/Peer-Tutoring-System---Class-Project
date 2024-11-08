@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout - Peer Tutoring Program</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #35424a;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .logout-container {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #ffffff22;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .btn-login {
+            background-color: #35424a;
+            border: none;
+            color: white;
+        }
+        .btn-login:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-container">
+        <h1>You've been logged out</h1>
+        <p>Thank you for using the Peer Tutoring Program.</p>
+        <button class="btn btn-login mt-3" onclick="window.location.href='registration.html';">Log In Again</button>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

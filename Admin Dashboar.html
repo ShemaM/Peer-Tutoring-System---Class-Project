@@ -12,10 +12,9 @@
         <div class="logo">Peer Tutoring Program</div>
         <nav>
             <ul>
-                
-                <li><a href="users.html">Users</a></li>
-                <li><a href="sessions.html">Sessions</a></li>
-                <li><a href="reports.html">Reports</a></li>
+                <li><a href="#" id="users-link">Users</a></li>
+                <li><a href="#" id="sessions-link">Sessions</a></li>
+                <li><a href="#" id="reports-link">Reports</a></li>
             </ul>
         </nav>
         <div class="admin-profile">
@@ -32,39 +31,54 @@
             <div>Feedback Summary: <span id="feedback-summary">0</span></div>
         </div>
 
-        <section id="approve-tutors">
-            <h2>Approve Tutors</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tutor Name</th>
-                        <th>Subjects Offered</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Populate with pending tutors -->
-                </tbody>
-            </table>
-        </section>
-
-        <section id="manage-users">
-            <h2>Manage Users</h2>
-            <table>
+        <!-- Users Section -->
+        <section id="users-section" class="section-content">
+            <h2>Users</h2>
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>User Type</th>
                         <th>User Name</th>
                         <th>Email</th>
                         <th>Status</th>
-                        <th>Action</th> <!--he danger color for remove -->
+                        <th>Action</th>
                     </tr>
                 </thead>
-                <tbody class="dangercolor">
-                    <!-- Populate with users -->
+                <tbody>
+                    <!-- Dynamically populated with users -->
                 </tbody>
             </table>
+        </section>
+
+        <!-- Sessions Section -->
+        <section id="sessions-section" class="section-content">
+            <h2>Sessions</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Tutor</th>
+                        <th>Tutee</th>
+                        <th>Subject</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamically populated with active sessions -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports-section" class="section-content">
+            <h2>Reports</h2>
+            <div id="report-summary">
+                <!-- Dynamically populate the report summary -->
+                <p>Total Tutors: <span id="report-total-tutors">0</span></p>
+                <p>Total Active Sessions: <span id="report-total-sessions">0</span></p>
+                <p>Feedback Summary: <span id="report-feedback-summary">0</span></p>
+            </div>
+            <button id="generate-report" class="btn btn-primary">Generate Report</button>
         </section>
     </main>
 
@@ -72,95 +86,148 @@
         <p>Contact us for support | Privacy Policy | Terms of Service</p>
     </footer>
 
+    <!-- Modal for User Management -->
+    <div class="modal" tabindex="-1" role="dialog" id="manageUserModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Manage User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="manage-user-form">
+                        <div class="form-group">
+                            <label for="user-name">Name</label>
+                            <input type="text" class="form-control" id="user-name" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-status">Status</label>
+                            <select class="form-control" id="user-status">
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="save-user-changes">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        // Dummy data to simulate pending tutors and users
-        const pendingTutors = [
-            { name: "SHEMA MANASSEH", subjects: "Math, Science" },
-            { name: "WAYNE M", subjects: "English, History" },
-        ];
+       // Dummy data to simulate users, sessions, and report stats
+const users = [
+    { type: "Tutor", name: "SHEMA MANASSEH", email: "shema@example.com", status: "Active" },
+    { type: "Tutee", name: "Rahmo", email: "rahmo@example.com", status: "Active" },
+    { type: "Tutor", name: "WAYNE M", email: "wayne@example.com", status: "Inactive" },
+    { type: "Tutee", name: "John Omanga", email: "john@example.com", status: "Active" },
+];
 
-        const users = [
-            { type: "Tutee", name: "Rahmo", email: "rahmo@outlook.com", status: "Active" },
-            { type: "Tutor", name: "John Omanga", email: "bob@outlook.com", status: "Blocked" },
-        ];
+const activeSessions = [
+    { tutor: "SHEMA MANASSEH", tutee: "Rahmo", subject: "Math", time: "10:00 AM", status: "Active" },
+    { tutor: "WAYNE M", tutee: "John Omanga", subject: "History", time: "2:00 PM", status: "Active" },
+];
 
-        // Function to render pending tutors
-        function renderPendingTutors() {
-            const tableBody = document.querySelector("#approve-tutors tbody");
-            tableBody.innerHTML = ""; // Clear the table body
-            pendingTutors.forEach((tutor, index) => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${tutor.name}</td>
-                    <td>${tutor.subjects}</td>
-                    <td>Pending</td>
-                    <td>
-                        <button onclick="approveTutor(${index})">Approve</button>
-                        <button onclick="rejectTutor(${index})" class="reject">Reject</button> 
-                    </td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
+// Function to render Users
+function renderUsers() {
+    const tableBody = document.querySelector("#users-section tbody");
+    tableBody.innerHTML = ""; // Clear the table body
+    users.forEach((user, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${user.type}</td>
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+            <td>${user.status}</td>
+            <td><button class="btn btn-warning manage-btn" data-index="${index}">Manage</button></td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
 
-        // Function to approve a tutor
-        function approveTutor(index) {
-            alert(`Approved: ${pendingTutors[index].name}`);
-            pendingTutors.splice(index, 1); // Remove approved tutor from pending list
-            renderPendingTutors(); // Re-render the list
-        }
+// Function to render Active Sessions
+function renderActiveSessions() {
+    const tableBody = document.querySelector("#sessions-section tbody");
+    tableBody.innerHTML = ""; // Clear the table body
+    activeSessions.forEach((session) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${session.tutor}</td>
+            <td>${session.tutee}</td>
+            <td>${session.subject}</td>
+            <td>${session.time}</td>
+            <td>${session.status}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
 
-        // Function to reject a tutor
-        function rejectTutor(index) {
-            alert(`Rejected: ${pendingTutors[index].name}`);
-            pendingTutors.splice(index, 1); // Remove rejected tutor from pending list
-            renderPendingTutors(); // Re-render the list
-        }
+// Function to render Report Summary
+function renderReportSummary() {
+    // Calculate the Total Tutors and Total Tutees
+    const totalTutors = users.filter(user => user.type === "Tutor" && user.status === "Active").length;
+    const totalTutees = users.filter(user => user.type === "Tutee" && user.status === "Active").length;
 
-        // Function to render users
-        function renderUsers() {
-            const tableBody = document.querySelector("#manage-users tbody");
-            tableBody.innerHTML = ""; // Clear the table body
-            users.forEach((user, index) => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${user.type}</td>
-                    <td>${user.name}</td>
-                    <td>${user.email}</td>
-                    <td>${user.status}</td>
-                    <td>
-                        <button onclick="blockUser(${index})" class="danger">Block</button>
-                        <button onclick="removeUser(${index})" class="danger">Remove</button>
-                    </td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
+    // Calculate the number of active sessions
+    const activeSessionsCount = activeSessions.filter(session => session.status === "Active").length;
 
-        // Function to block a user
-        function blockUser(index) {
-            alert(`Blocked: ${users[index].name}`);
-            users[index].status = "Blocked"; // Update user status
-            renderUsers(); // Re-render the list
-        }
+    // Display the updated values
+    document.querySelector("#report-total-tutors").textContent = totalTutors;
+    document.querySelector("#report-total-sessions").textContent = activeSessionsCount;
+    document.querySelector("#report-feedback-summary").textContent = `${activeSessionsCount} active sessions`;
 
-        // Function to remove a user
-        function removeUser(index) {
-            alert(`Removed: ${users[index].name}`);
-            users.splice(index, 1); // Remove user from the list
-            renderUsers(); // Re-render the list
-        }
+    // Also update the "Total Tutors" and "Total Tutees" on the stats panel
+    document.querySelector("#total-tutors").textContent = totalTutors;
+    document.querySelector("#total-tutees").textContent = totalTutees;
+    document.querySelector("#total-sessions").textContent = activeSessionsCount;
+}
 
-        // Initial rendering of data
-        document.addEventListener("DOMContentLoaded", function() {
-            renderPendingTutors();
-            renderUsers();
-        });
+// Manage User Button
+function manageUser(index) {
+    const user = users[index];
+    document.getElementById("user-name").value = user.name;
+    document.getElementById("user-status").value = user.status;
+
+    // Show the modal
+    $('#manageUserModal').modal('show');
+
+    // Save changes when Save button is clicked
+    document.getElementById('save-user-changes').addEventListener('click', function() {
+        user.status = document.getElementById("user-status").value;
+        renderUsers(); // Re-render the users list
+        renderReportSummary(); // Re-render the report summary with updated values
+        $('#manageUserModal').modal('hide'); // Close the modal
+    });
+}
+
+// Event listener for Manage button
+document.addEventListener('click', function(e) {
+    if (e.target && e.target.classList.contains('manage-btn')) {
+        const index = e.target.getAttribute('data-index');
+        manageUser(index);
+    }
+});
+
+// Generate Report Button
+document.getElementById("generate-report").addEventListener('click', function() {
+    alert("Report generated! You can now download it.");
+});
+
+// Initial render of data
+renderUsers();
+renderActiveSessions();
+renderReportSummary();
+
+       
     </script>
-    
 </body>
 </html>

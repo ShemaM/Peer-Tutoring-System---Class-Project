@@ -4,77 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page - Peer Tutoring Program</title>
+    
+    <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet"> 
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="styles/myStyles/landingpage.css">
-   
+    
+    <style>
+        /* Add some hover effects to buttons */
+        .btn-primary:hover {
+            background-color: #218838;
+            border-color: #218838;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Peer Tutoring Program</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="Tutee Dasboard.html">Tutee Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Tutor Dashboard.html">Tutor Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Admin Dashboar.html">Admin Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="logout.html">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="hero">
+    <!-- Hero Section -->
+    <header class="hero text-center text-white" style="background-color: #35424a; padding: 50px;">
         <h1>Welcome to the Peer Tutoring Program!</h1>
         <p>Your journey to academic success starts here.</p>
-    </div>
+       
+    </header>
 
+    <!-- Quick Links Section -->
     <div class="container my-5">
-        <h2>Quick Links</h2>
-        <div class="row">
+        <h2 class="text-center">Quick Links</h2>
+        <div class="row mt-4">
             <div class="col-md-4">
-                <div class="feature text-center">
+                <div class="feature text-center p-3 border rounded">
                     <h4>Tutees</h4>
                     <p>Find a tutor, schedule sessions, and track your learning progress.</p>
-                    <button class="btn btn-primary" onclick="
-                    alert('Redirecting to My Sessions...');
-                    window.location.href = 'tutee-dashboard.html';
-                    ">Go to My Sessions</button>
+                    <button class="btn btn-primary" style="background-color: #35424a; border-color: #35424a;" 
+                        onclick="window.location.href = 'Tutee Dasboard.html';">Go to Tutee Dashboard</button>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="feature text-center">
+                <div class="feature text-center p-3 border rounded">
                     <h4>Tutors</h4>
                     <p>Create your profile, manage your sessions, and provide feedback.</p>
-                    <button class="btn btn-primary" onclick="alert('Redirecting to Tutor Dashboard...');">Go to Tutor Dashboard</button>
+                    <button class="btn btn-primary" style="background-color: #35424a; border-color: #35424a;" 
+                        onclick="window.location.href = 'Tutor Dashboard.html';">Go to Tutor Dashboard</button>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="feature text-center">
+                <div class="feature text-center p-3 border rounded">
                     <h4>Admin</h4>
                     <p>Manage users, approve tutors, and oversee platform operations.</p>
-                    <button class="btn btn-primary" onclick="alert('Redirecting to Admin Dashboard...');">Go to Admin Dashboard</button>
+                    <button class="btn btn-primary" style="background-color: #35424a; border-color: #35424a;" 
+                        onclick="window.location.href = 'Admin Dashboar.html';">Go to Admin Dashboard</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="text-center py-4">
+    <!-- Footer -->
+    <footer class="text-center py-4" style="background-color: #35424a; color: white;">
         <p>&copy; 2024 Peer Tutoring Program. All rights reserved.</p>
+        <div>
+            <a href="logout.html" class="text-white">Logout</a>
+        </div>
     </footer>
 
+    <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
 </body>
 </html>

@@ -123,6 +123,19 @@
         tr:hover {
             background: #ddd;
         }
+
+        .session-button {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .session-button:hover {
+            background-color: #0056b3;
+        }
+
+        .feedback-section {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -130,7 +143,6 @@
         <div class="logo">Peer Tutoring Program</div>
         <nav>
             <ul>
-               
                 <li><a href="Browse Tutors.html">Browse Tutors</a></li>
                 <li><a href="My Sessions.html">My Sessions</a></li>
                 <li><a href="feedback.html">Feedback</a></li>
@@ -163,6 +175,19 @@
                 </tbody>
             </table>
         </section>
+
+        <section id="my-sessions">
+            <h2>My Sessions</h2>
+            <div id="session-list">
+                <!-- Upcoming session will be displayed here -->
+            </div>
+        </section>
+
+        <section class="feedback-section" id="feedback-section" style="display:none;">
+            <h2>Provide Feedback</h2>
+            <textarea id="feedback-text" rows="4" placeholder="Enter feedback here..."></textarea>
+            <button onclick="submitFeedback()">Submit Feedback</button>
+        </section>
     </main>
 
     <footer>
@@ -174,24 +199,25 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        // this is an example. Team database will work on data😊
         const availableTutors = [
-            { name: "Wayne", subjects: "Math, Science" },
-            { name: "RAHMO", subjects: "English, History" },
-            { name: "SHEMA", subjects: "Computer Science" },
+            { name: "Wayne", subjects: "Math, Science", isApproved: true },
+            { name: "RAHMO", subjects: "English, History", isApproved: true },
+            { name: "SHEMA", subjects: "Computer Science", isApproved: false },
         ];
+
+        let activeSession = null; // Track active session
 
         // Function to render available tutors
         function renderAvailableTutors() {
             const tableBody = document.querySelector("#browse-tutors tbody");
             tableBody.innerHTML = ""; // Clear the table body
-            availableTutors.forEach((tutor) => {
+            availableTutors.forEach((tutor, index) => {
                 const row = document.createElement("tr");
                 row.innerHTML = `
                     <td>${tutor.name}</td>
                     <td>${tutor.subjects}</td>
                     <td>
-                        <button onclick="scheduleSession('${tutor.name}')">Schedule Session</button>
+                        ${tutor.isApproved ? `<button onclick="scheduleSession('${index}')">Schedule Session</button>` : 'Not Approved'}
                     </td>
                 `;
                 tableBody.appendChild(row);
@@ -200,9 +226,35 @@
         }
 
         // Function to schedule a session
-        function scheduleSession(tutorName) {
-            alert(`Session scheduled with ${tutorName}`);
-            // Here you can implement actual session scheduling logic
+        function scheduleSession(tutorIndex) {
+            const tutor = availableTutors[tutorIndex];
+            if (tutor.isApproved) {
+                activeSession = tutor;
+                document.getElementById("session-list").innerHTML = `
+                    <p>Session scheduled with ${tutor.name} on ${new Date().toLocaleString()}.</p>
+                    <button class="session-button" onclick="startSession()">Start Session</button>
+                `;
+                document.getElementById("active-sessions").innerText = 1;
+            }
+        }
+
+        // Function to start a session
+        function startSession() {
+            alert(`Starting session with ${activeSession.name}`);
+            // You can add logic for starting the session like opening a video chat
+            document.getElementById("feedback-section").style.display = 'block'; // Show feedback form after session
+        }
+
+        // Function to submit feedback
+        function submitFeedback() {
+            const feedbackText = document.getElementById("feedback-text").value;
+            if (feedbackText.trim() === '') {
+                alert('Please enter feedback');
+                return;
+            }
+            alert(`Feedback submitted: ${feedbackText}`);
+            // Here you would save the feedback to a database or send it to the tutor
+            document.getElementById("feedback-text").value = ''; // Clear feedback input
         }
 
         // Initial rendering of data
@@ -210,6 +262,5 @@
             renderAvailableTutors();
         });
     </script>
-      
 </body>
 </html>

@@ -1,171 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registration/Login Page</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #35424a;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-    }
-    
-  .container{
-    margin: 10px;
-    padding: 10px 20px;
-    
-  }
-    
-    .form {
-      display: none;
-      
-    }
-    .active {
-      display: block;
-    }
-    button {
-      margin: 10px;
-      padding: 30px 20px;
-      background-color: #218838;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-   
-    }
-    
-    select, input {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/myStyles/registration.css">
+    <title>Sign In / Sign Up - Peer Tutoring Program</title>
+    <style>
+        /* Your previous CSS styles */
+        /* Add CSS here... */
+    </style>
 </head>
 <body>
-  <main>
-    <h1>Welcome to the Peer Tutoring Program</h1>
-    <br>
+    <div class="login-box">
+        <div class="login-header">
+            <header id="form-title">Sign In</header>
+        </div>
 
-    <div class="container">
-      <!-- Form Toggle Buttons -->
-      <button id="register-toggle">Register</button>
-      <button id="login-toggle">Login</button>
+        <!-- Sign In Form -->
+        <div class="input-box" id="signin-form">
+            <input type="text" id="signin-email" class="input-field" placeholder="Email" autocomplete="off" required>
+            <input type="password" id="signin-password" class="input-field" placeholder="Password" autocomplete="off" required>
+            <select id="user-role" class="input-field" required>
+                <option value="" disabled selected>Select Role</option>
+                <option value="tutee">Tutee</option>
+                <option value="tutor">Tutor</option>
+                <option value="admin">Admin</option>
+            </select>
+            <button id="signin-btn" class="submit-btn">Sign In</button>
+        </div>
 
-      <!-- Registration Form -->
-      <form id="register-form" class="form">
-        <h2>Register</h2>
-        <fieldset>
-          <legend>First Name</legend>
-          <input type="text" name="firstName" required>
-        </fieldset>
-        <fieldset>
-          <legend>Last Name</legend>
-          <input type="text" name="lastName" required>
-        </fieldset>
-        <fieldset>
-          <legend>Surname</legend>
-          <input type="text" name="surname" required>
-        </fieldset>
-        <fieldset>
-          <legend>School Email</legend>
-          <input type="email" name="email" required>
-        </fieldset>
-        <fieldset>
-          <legend>Password</legend>
-          <input type="password" name="password" required>
-        </fieldset>
-        <fieldset>
-          <legend>Choose Role</legend>
-          <select id="role-select" required>
-            <option value="">Select your role</option>
-            <option value="tutor">Tutor</option>
-            <option value="tutee">Tutee</option>
-            <option value="admin">Admin</option>
-          </select>
-        </fieldset>
-        <button type="submit">Register</button>
-      </form>
+        <!-- Sign Up Form -->
+        <div class="input-box" id="signup-form" style="display: none;">
+            <input type="text" id="signup-name" class="input-field" placeholder="Full Name" autocomplete="off" required>
+            <input type="text" id="signup-email" class="input-field" placeholder="Email" autocomplete="off" required>
+            <input type="password" id="signup-password" class="input-field" placeholder="Password" autocomplete="off" required>
+            <input type="password" id="signup-confirm-password" class="input-field" placeholder="Confirm Password" autocomplete="off" required>
 
-      <!-- Login Form -->
-      <form id="login-form" class="form">
-        <h2>Login</h2>
-        <fieldset>
-          <legend>School Email</legend>
-          <input type="email" name="email" required>
-        </fieldset>
-        <fieldset>
-          <legend>Password</legend>
-          <input type="password" name="password" required>
-        </fieldset>
-        <fieldset>
-          <legend>Choose Role</legend>
-          <select id="login-role-select" required>
-            <option value="">Select your role</option>
-            <option value="tutor">Tutor</option>
-            <option value="tutee">Tutee</option>
-            <option value="admin">Admin</option>
-          </select>
-        </fieldset>
-        <button type="submit">Login</button>
-      </form>
+            <select id="signup-role" class="input-field" required>
+                <option value="tutee">Tutee</option>
+                <option value="tutor">Tutor</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <button id="signup-btn" class="submit-btn">Sign Up</button>
+        </div>
+
+        <!-- Links to toggle between sign-up and sign-in -->
+        <div class="sign-up-link" id="sign-up-link" style="display: none;">
+            <p>Already have an account? <a href="#" onclick="toggleForm('signin')">Sign In</a></p>
+        </div>
+        <div class="sign-in-link" id="sign-in-link">
+            <p>Don't have an account? <a href="#" onclick="toggleForm('signup')">Sign Up</a></p>
+        </div>
     </div>
-  </main>
 
-  <script>
-    // Toggle forms
-    const registerToggle = document.getElementById('register-toggle');
-    const loginToggle = document.getElementById('login-toggle');
-    const registerForm = document.getElementById('register-form');
-    const loginForm = document.getElementById('login-form');
+    <script>
+        // Function to toggle between Sign In and Sign Up forms
+        function toggleForm(formType) {
+            if (formType === 'signin') {
+                document.getElementById('signin-form').style.display = 'block';
+                document.getElementById('signup-form').style.display = 'none';
+                document.getElementById('form-title').textContent = 'Sign In';
+                document.getElementById('sign-up-link').style.display = 'block';
+                document.getElementById('sign-in-link').style.display = 'none';
+            } else if (formType === 'signup') {
+                document.getElementById('signin-form').style.display = 'none';
+                document.getElementById('signup-form').style.display = 'block';
+                document.getElementById('form-title').textContent = 'Sign Up';
+                document.getElementById('sign-up-link').style.display = 'none';
+                document.getElementById('sign-in-link').style.display = 'block';
+            }
+        }
 
-    registerToggle.addEventListener('click', () => {
-      registerForm.classList.add('active');
-      loginForm.classList.remove('active');
-    });
+        // Function to redirect user based on role
+        function redirectToDashboard(role) {
+            console.log('Redirecting to dashboard for role:', role);  // Debugging line
+            if (role === 'tutee') {
+                window.location.href = 'Tutee Dasboard.html';
+            } else if (role === 'tutor') {
+                window.location.href = 'Tutor Dashboard.html';
+            } else if (role === 'admin') {
+                window.location.href = 'Admin Dashboar.html';
+            } else {
+                console.error('Invalid role specified');
+            }
+        }
 
-    loginToggle.addEventListener('click', () => {
-      loginForm.classList.add('active');
-      registerForm.classList.remove('active');
-    });
+        // Sign Up Button Event
+        const signUpButton = document.getElementById('signup-btn');
+        signUpButton.addEventListener('click', () => {
+            const fullName = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm-password').value;
+            const role = document.getElementById('signup-role').value;
 
-    // Handle registration
-    registerForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const role = document.getElementById('role-select').value;
-      if (!role) {
-        alert('Please select a role.');
-        return;
-      }
-      redirectUser(role);
-    });
+            if (fullName && email && password && password === confirmPassword && role) {
+                sessionStorage.setItem('userRole', role); // Save role in sessionStorage
+                alert('Sign Up successful!');
+                redirectToDashboard(role); // Redirect based on role
+            } else {
+                alert('Please complete all fields correctly');
+            }
+        });
 
-    // Handle login
-    loginForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const role = document.getElementById('login-role-select').value;
-      if (!role) {
-        alert('Please select a role.');
-        return;
-      }
-      redirectUser(role);
-    });
+        // Sign In Button Event
+        const signInButton = document.getElementById('signin-btn');
+        signInButton.addEventListener('click', () => {
+            const email = document.getElementById('signin-email').value;
+            const password = document.getElementById('signin-password').value;
+            const role = document.getElementById('user-role').value;
 
-    // Function to redirect user
-    function redirectUser(role) {
-      if (role === 'tutor') {
-        window.location.href = 'Tutor Dashboard.html';
-      } else if (role === 'tutee') {
-        window.location.href = 'Tutee Dashboard.html';
-      } else if (role === 'admin') {
-        window.location.href = 'Admin Dashboard.html';
-      }
-      else {
-        window.location.href = 'landingpage.html';
-      }
-    }
-  </script>
+            if (email && password && role) {
+                sessionStorage.setItem('userRole', role); // Save role in sessionStorage
+                alert('Sign In successful!');
+                redirectToDashboard(role); // Redirect based on role
+            } else {
+                alert('Please complete all fields correctly');
+            }
+        });
+    </script>
 </body>
 </html>
