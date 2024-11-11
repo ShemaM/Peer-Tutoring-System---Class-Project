@@ -98,7 +98,7 @@
 
             if (fullName && email && password && password === confirmPassword && role) {
                 sessionStorage.setItem('userRole', role); // Save role in sessionStorage
-                alert('Sign Up successful!');
+                //alert('Sign Up successful!', redirectToDashboard(role));
                 redirectToDashboard(role); // Redirect based on role
             } else {
                 alert('Please complete all fields correctly');
