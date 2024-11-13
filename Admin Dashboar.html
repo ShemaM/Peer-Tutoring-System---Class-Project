@@ -3,229 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles/myStyles/admin.css">
     <title>Admin Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f7fa;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .section-header {
+            cursor: pointer;
+        }
+        .toggle-button {
+            float: right;
+        }
+        .btn-lg {
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="logo">Peer Tutoring Program</div>
-        <nav>
-            <ul>
-                <li><a href="#" id="users-link">Users</a></li>
-                <li><a href="#" id="sessions-link">Sessions</a></li>
-                <li><a href="#" id="reports-link">Reports</a></li>
-            </ul>
-        </nav>
-        
-    </header>
+    <div class="container">
+        <header class="mb-4">
+            <h1 class="text-center">Admin Dashboard</h1>
+            <div class="d-flex justify-content-center mb-4">
+                <button class="btn btn-primary btn-lg mx-2" data-bs-toggle="collapse" data-bs-target="#users-section">Manage Users</button>
+                <button class="btn btn-success btn-lg mx-2" data-bs-toggle="collapse" data-bs-target="#sessions-section">View Active Sessions</button>
+                <button class="btn btn-warning btn-lg mx-2" data-bs-toggle="collapse" data-bs-target="#monitoring-section">Go to System Monitoring</button>
+                <button class="btn btn-danger btn-lg mx-2" data-bs-toggle="collapse" data-bs-target="#reports-section">Generate Reports</button>
+            </div>
+        </header>
 
-    <main>
-        <h1>Welcome, Admin</h1>
-        <div class="stats">
-            <div>Total Tutors Registered: <span id="total-tutors">0</span></div>
-            <div>Total Tutees Registered: <span id="total-tutees">0</span></div>
-            <div>Total Active Sessions: <span id="total-sessions">0</span></div>
-            <div>Feedback Summary: <span id="feedback-summary">0</span></div>
+        <!-- Tutor Approval Section -->
+        <div id="users-section" class="collapse">
+            <div class="card">
+                <div class="card-header section-header">
+                    <h4>Tutor Approval</h4>
+                    <button class="toggle-button btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#users-content">Show</button>
+                </div>
+                <div id="users-content" class="collapse">
+                    <div class="card-body">
+                        <h5>Manage Users</h5>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>User Type</th>
+                                    <th>User Name</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tutor</td>
+                                    <td>John Doe</td>
+                                    <td>johndoe@example.com</td>
+                                    <td>Pending</td>
+                                    <td><button class="btn btn-primary" onclick="approveTutor()">Approve</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Tutor</td>
+                                    <td>Sarah Lee</td>
+                                    <td>sarahlee@example.com</td>
+                                    <td>Pending</td>
+                                    <td><button class="btn btn-primary" onclick="approveTutor()">Approve</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Users Section -->
-        <section id="users-section" class="section-content">
-            <h2>Users</h2>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>User Type</th>
-                        <th>User Name</th>
-                        <th>Email</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Dynamically populated with users -->
-                </tbody>
-            </table>
-        </section>
+        <!-- Active Sessions Section -->
+        <div id="sessions-section" class="collapse">
+            <div class="card">
+                <div class="card-header section-header">
+                    <h4>Active Sessions</h4>
+                    <button class="toggle-button btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#sessions-content">Show</button>
+                </div>
+                <div id="sessions-content" class="collapse">
+                    <div class="card-body">
+                        <h5>Active Sessions</h5>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Tutor</th>
+                                    <th>Tutee</th>
+                                    <th>Subject</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>John Doe</td>
+                                    <td>Jane Smith</td>
+                                    <td>Math</td>
+                                    <td>10:00 AM</td>
+                                    <td>Active</td>
+                                </tr>
+                                <tr>
+                                    <td>Wayne M</td>
+                                    <td>Tom Johnson</td>
+                                    <td>History</td>
+                                    <td>2:00 PM</td>
+                                    <td>Inactive</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <!-- Sessions Section -->
-        <section id="sessions-section" class="section-content">
-            <h2>Sessions</h2>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Tutor</th>
-                        <th>Tutee</th>
-                        <th>Subject</th>
-                        <th>Time</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Dynamically populated with active sessions -->
-                </tbody>
-            </table>
-        </section>
+        <!-- System Monitoring Section -->
+        <div id="monitoring-section" class="collapse">
+            <div class="card">
+                <div class="card-header section-header">
+                    <h4>System Monitoring</h4>
+                    <button class="toggle-button btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#monitoring-content">Show</button>
+                </div>
+                <div id="monitoring-content" class="collapse">
+                    <div class="card-body">
+                        <h5>Monitor System Health</h5>
+                        <p>System is running smoothly. No issues detected.</p>
+                        <button class="btn btn-warning" onclick="checkSystemHealth()">Check System Health</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Reports Section -->
-        <section id="reports-section" class="section-content">
-            <h2>Reports</h2>
-            <div id="report-summary">
-                <!-- Dynamically populate the report summary -->
-                <p>Total Tutors: <span id="report-total-tutors">0</span></p>
-                <p>Total Active Sessions: <span id="report-total-sessions">0</span></p>
-                <p>Feedback Summary: <span id="report-feedback-summary">0</span></p>
-            </div>
-            <button id="generate-report" class="btn btn-primary">Generate Report</button>
-        </section>
-    </main>
-
-    <footer>
-        <p>Contact us for support | Privacy Policy | Terms of Service</p>
-    </footer>
-
-    <!-- Modal for User Management -->
-    <div class="modal" tabindex="-1" role="dialog" id="manageUserModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Manage User</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <div id="reports-section" class="collapse">
+            <div class="card">
+                <div class="card-header section-header">
+                    <h4>Reports</h4>
+                    <button class="toggle-button btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#reports-content">Show</button>
                 </div>
-                <div class="modal-body">
-                    <form id="manage-user-form">
-                        <div class="form-group">
-                            <label for="user-name">Name</label>
-                            <input type="text" class="form-control" id="user-name" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="user-status">Status</label>
-                            <select class="form-control" id="user-status">
-                                <option value="Active">Active</option>
-                                <option value="Inactive">Inactive</option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="save-user-changes">Save changes</button>
+                <div id="reports-content" class="collapse">
+                    <div class="card-body">
+                        <h5>Report Summary</h5>
+                        <p>Total Tutors: <span id="report-total-tutors">5</span></p>
+                        <p>Total Active Sessions: <span id="report-total-sessions">3</span></p>
+                        <p>Feedback Summary: <span id="report-feedback-summary">0</span></p>
+                        <button class="btn btn-primary" onclick="generateReport()">Generate Report</button>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-       // Dummy data to simulate users, sessions, and report stats
-const users = [
-    { type: "Tutor", name: "SHEMA MANASSEH", email: "shema@example.com", status: "Active" },
-    { type: "Tutee", name: "Rahmo", email: "rahmo@example.com", status: "Active" },
-    { type: "Tutor", name: "WAYNE M", email: "wayne@example.com", status: "Inactive" },
-    { type: "Tutee", name: "John Omanga", email: "john@example.com", status: "Active" },
-];
+        // Tutor Approval Functionality
+        function approveTutor() {
+            const tutorStatus = confirm("Do you want to approve this tutor?");
+            if (tutorStatus) {
+                alert("Tutor Approved");
+                // Logic to update tutor status from 'Pending' to 'Approved'
+                // E.g., update the status in the database via AJAX or API call
+            } else {
+                alert("Tutor not approved.");
+            }
+        }
 
-const activeSessions = [
-    { tutor: "SHEMA MANASSEH", tutee: "Rahmo", subject: "Math", time: "10:00 AM", status: "Active" },
-    { tutor: "WAYNE M", tutee: "John Omanga", subject: "History", time: "2:00 PM", status: "Active" },
-];
+        // System Monitoring Functionality
+        function checkSystemHealth() {
+            alert("System Health Check completed. Everything is running smoothly!");
+            // Add further system health checks and alerts
+        }
 
-// Function to render Users
-function renderUsers() {
-    const tableBody = document.querySelector("#users-section tbody");
-    tableBody.innerHTML = ""; // Clear the table body
-    users.forEach((user, index) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${user.type}</td>
-            <td>${user.name}</td>
-            <td>${user.email}</td>
-            <td>${user.status}</td>
-            <td><button class="btn btn-warning manage-btn" data-index="${index}">Manage</button></td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
-
-// Function to render Active Sessions
-function renderActiveSessions() {
-    const tableBody = document.querySelector("#sessions-section tbody");
-    tableBody.innerHTML = ""; // Clear the table body
-    activeSessions.forEach((session) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${session.tutor}</td>
-            <td>${session.tutee}</td>
-            <td>${session.subject}</td>
-            <td>${session.time}</td>
-            <td>${session.status}</td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
-
-// Function to render Report Summary
-function renderReportSummary() {
-    // Calculate the Total Tutors and Total Tutees
-    const totalTutors = users.filter(user => user.type === "Tutor" && user.status === "Active").length;
-    const totalTutees = users.filter(user => user.type === "Tutee" && user.status === "Active").length;
-
-    // Calculate the number of active sessions
-    const activeSessionsCount = activeSessions.filter(session => session.status === "Active").length;
-
-    // Display the updated values
-    document.querySelector("#report-total-tutors").textContent = totalTutors;
-    document.querySelector("#report-total-sessions").textContent = activeSessionsCount;
-    document.querySelector("#report-feedback-summary").textContent = `${activeSessionsCount} active sessions`;
-
-    // Also update the "Total Tutors" and "Total Tutees" on the stats panel
-    document.querySelector("#total-tutors").textContent = totalTutors;
-    document.querySelector("#total-tutees").textContent = totalTutees;
-    document.querySelector("#total-sessions").textContent = activeSessionsCount;
-}
-
-// Manage User Button
-function manageUser(index) {
-    const user = users[index];
-    document.getElementById("user-name").value = user.name;
-    document.getElementById("user-status").value = user.status;
-
-    // Show the modal
-    $('#manageUserModal').modal('show');
-
-    // Save changes when Save button is clicked
-    document.getElementById('save-user-changes').addEventListener('click', function() {
-        user.status = document.getElementById("user-status").value;
-        renderUsers(); // Re-render the users list
-        renderReportSummary(); // Re-render the report summary with updated values
-        $('#manageUserModal').modal('hide'); // Close the modal
-    });
-}
-
-// Event listener for Manage button
-document.addEventListener('click', function(e) {
-    if (e.target && e.target.classList.contains('manage-btn')) {
-        const index = e.target.getAttribute('data-index');
-        manageUser(index);
-    }
-});
-
-// Generate Report Button
-document.getElementById("generate-report").addEventListener('click', function() {
-    alert("Report generated! You can now download it.");
-});
-
-// Initial render of data
-renderUsers();
-renderActiveSessions();
-renderReportSummary();
-
-       
+        // Generate Report Functionality
+        function generateReport() {
+            alert("Report generated! You can now download it.");
+            // Logic for generating reports, you can integrate a report-generation system here
+        }
     </script>
 </body>
 </html>
