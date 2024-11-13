@@ -109,13 +109,16 @@
 <body>
     <header>
         <div class="logo">Peer Tutoring Program</div>
+        <div class="ml-auto">
+            <a href="logout.html" class="btn btn-danger">Log Out</a>
+        </div>
     </header>
 
     <main>
         <h1>Welcome, Tutor</h1>
 
         <!-- Dashboard Summary -->
-        <div class="stats">
+        <div class="stats modal" >
             <div>Total Sessions Booked: <span id="total-booked">0</span></div>
             <div>Total Sessions Completed: <span id="total-completed">0</span></div>
             <div>Feedback Received: <span id="feedback-received">0</span></div>
@@ -143,7 +146,7 @@
             </button>
             <div id="session-2" class="session-details">
                 <h4>Tutee: Bob Johnson</h4>
-                <p><strong>Session Date:</strong> November 12, 2024, 2:00 PM</p>
+                <p><strong>Session Date:</strong> November 14, 2024, 2:00 PM</p>
                 <p><strong>Session Type:</strong> Physical</p>
                 <p><strong>Venue:</strong> Room 101, Main Building</p>
                 <p><strong>Resources Needed:</strong> Physics textbook, Lab equipment</p>
@@ -190,28 +193,38 @@
 
         // Function to start the countdown timer
         function startTimer(sessionId, targetTime) {
-            const timerElement = document.getElementById(sessionId);
-            const countDownDate = new Date(targetTime).getTime();
+    const timerElement = document.getElementById(sessionId);
+    const targetDate = new Date(targetTime);
+    
+    // Set the target time to today's date if it's not already today
+    const now = new Date();
+    if (targetDate.getDate() !== now.getDate() || 
+        targetDate.getMonth() !== now.getMonth() || 
+        targetDate.getFullYear() !== now.getFullYear()) {
+        targetDate.setFullYear(now.getFullYear(), now.getMonth(), now.getDate());
+    }
 
-            const x = setInterval(function() {
-                const now = new Date().getTime();
-                const distance = countDownDate - now;
+    const countDownDate = targetDate.getTime();
 
-                if (distance < 0) {
-                    clearInterval(x);
-                    timerElement.innerHTML = "Session Started!";
-                } else {
-                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                    timerElement.innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
-                }
-            }, 1000);
+    const x = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = countDownDate - now;
+
+        if (distance < 0) {
+            clearInterval(x);
+            timerElement.innerHTML = "Session Started!";
+        } else {
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            timerElement.innerHTML = `${hours}h ${minutes}m ${seconds}s`;
         }
+    }, 1000);
+}
 
         // Set the target times for the sessions (example dates)
-        startTimer('timer-1', '2024-11-10T10:00:00');
-        startTimer('timer-2', '2024-11-12T14:00:00');
+        startTimer('timer-1', '2024-13-10T10:00:00');
+        startTimer('timer-2', '2024-14-12T14:00:00');
     </script>
 </body>
 </html>
