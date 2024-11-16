@@ -1,235 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peer Tutoring Program</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-       /* Global Styling */
-body {
-    font-family:'Times New Roman', Times, serif
-
+        /* General Styles */
+        body, html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 /* Navbar Styling */
 .navbar {
     background-color: #35424a;
 }
-.navbar-brand, .btn {
+
+#home {
+    background-image: url('styles/external files/pexels-cottonbro-6344238.jpg'); /* Correct relative path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.navbar-brand,
+.nav-link {
     color: white !important;
-}
-.logo {
-    font-family: 'Cursive', sans-serif;
-    font-weight: bold;
-    font-size: 1.5rem;
-    animation: logoAnimation 1.5s ease-in-out infinite alternate;
+    font-weight: 800;
 }
 
-@keyframes logoAnimation {
-    from {transform: scale(1);}
-    to {transform: scale(1.1);}
+.navbar .nav-link:hover {
+    color: #218838 !important;
 }
 
-/* Section Backgrounds */
-.jumbotron-section {
-    background-color: rgb(164, 172, 181);
-    padding: 4rem 0;
-    color: #333;
-}
-.jumbotron-section h1, .jumbotron-section p {
-    color: #fff;
-}
-.courses-section {
-    background-color: rgb(218, 209, 209);
-    padding: 4rem 0;
-    
-}
-.reviews-section {
-    background-color: #ffffff;
-    padding: 4rem 0;
-}
-.cta-section {
+/* Hero Section */
+.hero-section {
     background-color: #35424a;
-    color: #fff;
-    padding: 4rem 0;
+    color: white;
+    text-align: center;
+    padding: 0; /* Remove default padding */
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.hero-section p {
+    font-size: 1.25rem;
+    opacity: 0.85;
+    margin-bottom: 40px;
+}
+
+.hero-section .btn-primary {
+    background-color: #218838; 
+    border: 2px solid #218838; 
+    color: white; 
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: 600; 
+    text-transform: uppercase; 
+    border-radius: 50px; 
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+    text-decoration: none; /
+}
+
+.hero-section .btn-primary:hover {
+    background-color: #1e7e34;
+    border-color: #1e7e34; 
+    transform: translateY(-2px); 
+}
+
+
+/* Explore Section */
+.explore-section {
+    padding: 50px 0;
     text-align: center;
 }
-.cta-section h2, .cta-section p {
-    color: #fff;
+
+.explore-card {
+    border: none;
+    background-color: #f1f1f1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
 }
+
+.explore-card:hover {
+    transform: scale(1.05);
+}
+
+.explore-card h5 {
+    margin-top: 15px;
+}
+
+/* Call-to-Action Section */
+.cta-section {
+    background-color: #35424a;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.cta-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.cta-section .btn {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    margin-top: 20px;
+}
+
+/* Footer Section */
 .footer {
     background-color: #222;
     color: white;
-    padding: 1rem 0;
     text-align: center;
+    padding: 15px;
 }
 
-/* Improved Buttons using Bootstrap */
-.btn-outline-light, .btn-primary {
-    transition: background-color 0.3s ease;
-}
-.btn-outline-light:hover {
-    background-color: #fff !important;
-    color: #35424a !important;
-}
-.btn-primary:hover {
-    background-color: #218838;
+.footer a {
+    color: #fff;
+    text-decoration: none;
 }
 
-/* Bootstrap Card Customization for Carousel */
-.carousel-item .card {
-    border: none;
-}
-.carousel-item .card-body {
-    padding: 1.5rem;
-}
-
-/* Text Centering Utility */
-.text-primary, .text-center {
-    text-align: center !important;
-}
-
-/* Utilities for Spacing and Responsiveness */
-.mb-4, .mt-4, .my-4, .py-4 {
-    margin-bottom: 1.5rem !important;
-    margin-top: 1.5rem !important;
-    padding-top: 1.5rem !important;
-    padding-bottom: 1.5rem !important;
+.footer a:hover {
+    color: #218838;
 }
 
     </style>
 </head>
-<body>
 
+<body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand logo" href="#">Peer Tutoring Program</a>
-        <div class="ml-auto">
-            <a href="signup.html" class="btn btn-primary">Sign Up</a>
+        <a class="navbar-brand" href="#home">THE PEER TUTORING PROGRAM</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link " href="#explore">Popular Courses</a></li>
+                <li class="nav-item"><a class="nav-link " href="#cta">Join Our Community</a></li>
+                <li class="nav-item"><a class="nav-link " href="#footer">Quick Links</a></li>
+            </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="jumbotron-section">
-        <div class="container text-center">
-            <h1 class="display-4">Empowering Students Through Peer Learning</h1>
-            <p class="lead">Join a supportive community where students help each other excel. 
-                <br>Our peer tutoring program connects you with experienced peers ready to guide you through challenging subjects and unlock your academic potential.</p>
-                
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="What do you want to learn?" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button" onclick="performSearch()" >Search</button>
-                </div>
-            </div>
+    <section class="hero-section" id="home">
+        <div class="container">
+            <h1>Welcome to the Peer Tutoring Program</h1>
+            <p>Find the support you need or offer your expertise as a tutor to help others succeed.</p>
+            <a href="#signup" class="btn btn-primary">Get Started</a>
         </div>
     </section>
 
-    <!-- Courses Section -->
-    <section class="courses-section" >
+    <!-- Explore Courses Section -->
+    <section class="explore-section" id="explore">
         <div class="container">
-            <h2 class="text-center mb-4 ">Popular Courses</h2>
-            <div class="row text-center">
+            <h2>Explore Our Popular Courses</h2>
+            <div class="row">
+                <!-- Course 1 -->
                 <div class="col-md-4">
-                    <button class="btn btn-outline-primary btn-block">IT Courses</button>
-                    <br>
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-outline-primary btn-block">Accounting</button>
-                <br>
-                </div>
-
-                <div class="col-md-4">
-                    <button class="btn btn-outline-primary btn-block">Data Science</button>
-                    <br>
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-outline-primary btn-block">Finance</button>
-                    <br>
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-outline-primary btn-block">International Relation</button>
-                    <br>
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-outline-primary btn-block">Pharmacy</button>
-                    <br>
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-outline-primary btn-block">Journalism</button>
-                    <br>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reviews Section as Carousel -->
-    <section class="reviews-section">
-        <div class="container">
-            <h2 class="text-center text-primary mb-4">What Our Users Are Saying</h2>
-            <div id="reviewCarousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <p class="card-text">"The tutors are amazing! I learned so much in such a short time. Highly recommend!"</p>
-                                <footer class="blockquote-footer">John Omanga, Tutee</footer>
-                            </div>
-                        </div>
+                    <div class="explore-card" data-bs-toggle="modal" data-bs-target="#courseModal">
+                        <h5>Introduction to Programming</h5>
+                        <p>A beginner-friendly course to get you started with coding.</p>
                     </div>
-                    <div class="carousel-item">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <p class="card-text">"A great program for anyone looking to excel in their studies."</p>
-                                <footer class="blockquote-footer">Shema Nzabakamira, Tutee</footer>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Add more carousel items here if needed -->
                 </div>
-                <a class="carousel-control-prev" href="#reviewCarousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#reviewCarousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                <!-- Course 2 -->
+                <div class="col-md-4">
+                    <div class="explore-card" data-bs-toggle="modal" data-bs-target="#courseModal">
+                        <h5>Financial Accounting</h5>
+                        <p>Learn the basics of financial accounting and analysis.</p>
+                    </div>
+                </div>
+                <!-- Course 3 -->
+                <div class="col-md-4">
+                    <div class="explore-card" data-bs-toggle="modal" data-bs-target="#courseModal">
+                        <h5>Data Science Basics</h5>
+                        <p>An introduction to the world of data analysis and visualization.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    
-    <section class="cta-section">
+    <!-- Call-to-Action Section -->
+    <section class="cta-section" id="cta">
         <div class="container">
-            <h2>Join Our Program Today!</h2>
-            <p>Whether you’re looking for help or ready to become a tutor, we’re here to support you.</p>
-            <a href="#" class="btn btn-primary">Log In</a>
-            <a href="signup.html" class="btn btn-primary ml-2 ">Sign Up</a>
+            <h2>Become a Part of the Peer Tutoring Program</h2>
+            <p>Join a community of learners and tutors working together to achieve success.</p>
+            <a href="#signup" class="btn btn-light">Sign Up Now</a>
+            <a href="#login" class="btn btn-outline-light">Log In</a>
         </div>
     </section>
 
-   
-    <footer class="footer">
-        <p>© 2024 Peer Tutoring Program. All Rights Reserved.</p>
-    </footer>
+   <!-- Footer -->
+<footer class="footer" id="footer">
+    <div class="container">
+        <div class="row">
+            <!-- About Us Section -->
+            <div class="col-md-4">
+                <h5>About Us</h5>
+                <p>We are a community-driven platform dedicated to empowering students through peer tutoring. Our mission is to provide academic support and help learners achieve their goals with the guidance of skilled tutors.</p>
+            </div>
+            <!-- Quick Links Section -->
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#home" class="text-white">Home</a></li>
+                    <li><a href="#explore" class="text-white">Explore Courses</a></li>
+                    <li><a href="#signup" class="text-white">Sign Up</a></li>
+                    <li><a href="#login" class="text-white">Log In</a></li>
+                    <li><a href="#cta" class="text-white">Become a Tutor</a></li>
+                </ul>
+            </div>
+            <!-- Contact Us Section -->
+            <div class="col-md-4">
+                <h5>Contact Us</h5>
+                <ul class="list-unstyled">
+                    <li><a href="mailto:info@peertutoring.com" class="text-white">info@peertutoringprogram.com</a></li>
+                    <li><a href="tel:+1234567890" class="text-white">+254712726352</a></li>
+                    <li><a href="https://www.google.com/maps" class="text-white">Visit Our Office</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center mt-4">
+                <p>© 2024 Peer Tutoring Program. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Course Modal -->
+    <div class="modal fade" id="courseModal" tabindex="-1" aria-labelledby="courseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="courseModalLabel">Course Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>More information about the course will go here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Enroll Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
     <script>
-         function performSearch() {
-        var query = document.querySelector('input[placeholder="What do you want to learn?"]').value;
-        if (query) {
-            // Redirect to a search results page or handle the search query
-            // For demonstration, we'll just log the query to the console
-            console.log("Searching for:", query);
-            // You can redirect to a search results page like this:
-            // window.location.href = 'search.html?query=' + encodeURIComponent(query);
-        } else {
-            alert("Please enter a search term.");
-        }
-    }
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('.nav-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll Animation for Explore Section
+        const exploreSection = document.getElementById("explore");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("animate__fadeIn");
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(exploreSection);
     </script>
 </body>
+
 </html>
